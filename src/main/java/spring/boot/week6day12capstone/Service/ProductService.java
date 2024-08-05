@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import spring.boot.week6day12capstone.Model.Product;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @Service
 public class ProductService {
@@ -40,5 +41,31 @@ public class ProductService {
             }
         }
         return false;
+    }
+
+    //search for name of product | extra 1
+    public Product getProductByName(String name) {
+        for (Product product : products) {
+            if (product.getName().equalsIgnoreCase(name)) {
+                return product;
+            }
+        }
+        return null;
+    }
+    //extra 2
+    public ArrayList<Product> getProductSortedByPrice() {
+        ArrayList<Product> productSorted = new ArrayList<>(products);
+        productSorted.sort(Comparator.comparingDouble(Product::getPrice).reversed());
+        return productSorted;
+    }
+
+
+    public Product getProductById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) {
+                return product;
+            }
+        }
+        return null;
     }
 }

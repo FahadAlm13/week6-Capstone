@@ -43,4 +43,13 @@ public class MerchantStockService {
         return false;
     }
 
+    public MerchantStock getMerchantStock(int productId, int merchantId) {
+        for (MerchantStock merchantStock : merchantStocks) {
+            if (merchantStock.getProductId() == productId && merchantStock.getMerchantId() == merchantId) {
+                return merchantStock;
+            }
+        }
+        return null;
+    }
+
 }

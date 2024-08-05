@@ -49,9 +49,11 @@ public class UserController {
     }
     @PostMapping("/buy")
     public ResponseEntity buyProduct(@RequestParam int userId, @RequestParam int productId, @RequestParam int merchantId) {
-        if (userService.buyProduct(userId, productId, merchantId)) {
-            return ResponseEntity.status(200).body(new ApiResponse("Product purchased successfully"));
+        String result = userService.buyProduct(userId, productId, merchantId);
+        if (result.equals("Product purchased successfully")) {
+            return ResponseEntity.status(200).body(new ApiResponse(result));
+        } else {
+            return ResponseEntity.status(400).body(new ApiResponse(result));
         }
-        return ResponseEntity.status(404).body(new ApiResponse("Product purchased not found"));
     }
 }

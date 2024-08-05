@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import spring.boot.week6day12capstone.Api.ApiResponse;
 import spring.boot.week6day12capstone.Model.MerchantStock;
 import spring.boot.week6day12capstone.Service.MerchantStockService;
+import spring.boot.week6day12capstone.Service.UserService;
 
 @RestController
 @RequestMapping("/api/v1/merchantstock")
@@ -15,6 +16,7 @@ import spring.boot.week6day12capstone.Service.MerchantStockService;
 public class MerchantStockController {
 
     private final MerchantStockService merchantStockService;
+    private final UserService userService;
 
     @GetMapping("/get")
     public ResponseEntity getAllMerchantStocks() {
@@ -28,6 +30,7 @@ public class MerchantStockController {
             return ResponseEntity.status(400).body(new ApiResponse(message));
         }
         merchantStockService.addMerchantStock(merchantStock);
+
         return ResponseEntity.status(200).body(new ApiResponse("MerchantStock added successfully"));
     }
 
@@ -54,8 +57,8 @@ public class MerchantStockController {
     @PutMapping("/addStock")
     public ResponseEntity addStock(@RequestParam int productId, @RequestParam int merchantId, @RequestParam int amount) {
         if (merchantStockService.addMoreStock(productId, merchantId, amount)) {
-            return ResponseEntity.status(200).body(new ApiResponse("MerchantStock added successfully"));
+            return ResponseEntity.status(200).body(new ApiResponse("product buy successfully"));
         }
-        return ResponseEntity.status(404).body(new ApiResponse("MerchantStock not found"));
+        return ResponseEntity.status(404).body(new ApiResponse("product you want to buy not available"));
     }
 }
