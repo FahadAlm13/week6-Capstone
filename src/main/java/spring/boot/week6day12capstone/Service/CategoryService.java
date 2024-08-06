@@ -2,6 +2,7 @@ package spring.boot.week6day12capstone.Service;
 
 import org.springframework.stereotype.Service;
 import spring.boot.week6day12capstone.Model.Category;
+import spring.boot.week6day12capstone.Model.Product;
 
 import java.util.ArrayList;
 
@@ -31,4 +32,5 @@ public class CategoryService {
     public boolean deleteCategory(int id) {
         return categories.removeIf(category -> category.getId() == id);
     }
+
 }

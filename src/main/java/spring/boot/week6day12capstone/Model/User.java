@@ -31,4 +31,10 @@ public class User {
     private double balance;
 
     private ArrayList<Integer> wishlist = new ArrayList<>();
+
+
+
+    @AssertFalse
+    private boolean isPrime ;
+
 }
